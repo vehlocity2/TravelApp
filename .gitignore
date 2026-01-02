@@ -1,0 +1,16 @@
+# Ignore env files
+.env
+.env.*
+
+# Ignore node modules
+node_modules/
+
+# Vite cache
+frontend/.vite/
+
+# Ignore builds
+dist/
+build/
+
+# Ignore backend uploaded images
+backend/upload/
