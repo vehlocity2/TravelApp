@@ -17,7 +17,8 @@ app.use(
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.use('/upload', express.static(path.join(__dirname, 'upload')));
+
+// app.use('/upload', express.static(path.join(__dirname, 'upload')));
 
 
 mongoose.connect(process.env.MONGO_URL).then(()=>{

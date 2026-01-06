@@ -6,7 +6,7 @@ const createPost = async(req, res)=>{
         if( !content ){
             return res.status(404).json({ message: "Contents is required"})
         }
-        const imagePath = req.files? req.files.map(file => file.path.replace(/\\/g, '/')) : []
+        const imagePath = req.files? req.files.map(file => file.path) : []
         const userId = req.user.userId
         const post = new Post({
             content,
