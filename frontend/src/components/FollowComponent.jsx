@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 const FollowComponent = ({user, loggedUser, onFollowUpdate}) => {
   const navigate = useNavigate()
-  const profileImage = user?.image ? `${import.meta.env.VITE_API_URL}/${user?.image.replace(/\\/g, '/')}` : image1;
+  const profileImage = user?.image ? user?.image : image1;
   const { isFollowing, handleFollow, loading} = UseHooks({user, loggedUser, onFollowUpdate})
   const isOwner = loggedUser && loggedUser._id === user._id;
   const handleFollowButton = async (e)=>{

@@ -39,7 +39,7 @@ const TripComponent = ({trips}) => {
   return (
      <div className=" w-full">
         <div className="shadow-lg bg-white  rounded-lg relative">
-            <img src={`${import.meta.env.VITE_API_URL}/${trips.images[0].replace(/\\/g, '/')}`} alt="" className='w-full h-48 object-cover rounded'/>
+            <img src={trips.images[0]} alt="" className='w-full h-48 object-cover rounded'/>
             <div className='absolute top-0 right-0'>
                 {admin && <HiOutlineDotsVertical className="text-xl bg-white px-0 mx-0 cursor-pointer " onClick={(e)=>{ e.stopPropagation(); setOpenMenu((prev) => !prev)}}/>}
                     <DropdownMenu

@@ -84,13 +84,13 @@ const TourDetails =  () => {
           <div className='flex flex-col gap-4 md:gap-6  md:w-1/4 '>
             <div className="flex flex-row md:flex-col overflow-x-auto gap-3">
               {product.images.map((img, index)=>(
-                  <img key={index} src={`${import.meta.env.VITE_API_URL}/${img.replace(/\\/g, '/')}`} alt="" className='w-40 h-20 object-cover cursor-pointer' onClick={()=> setImage(img)}/>
+                  <img key={index} src={img} alt="" className='w-40 h-20 object-cover cursor-pointer' onClick={()=> setImage(img)}/>
               ))}
             </div>
           </div>
           <div className="flex flex-col relative w-full md:w-3/4 gap-4">
             <div className="w-full  h-72 flex items-center justify-center overflow-hidden rounded-xl bg-gray-100">
-              <img src={`${import.meta.env.VITE_API_URL}/${image.replace(/\\/g, '/')}`} alt="" className='w-full h-full object-cover cursor-pointer'/>
+              <img src={image} alt="" className='w-full h-full object-cover cursor-pointer'/>
             </div>
             <div className="absolute bottom-16 left-4 bg-opacity-50 px-3 py-3">
               <h2 className='text-lg font-bold text-white mb-0'>{product.title}</h2>

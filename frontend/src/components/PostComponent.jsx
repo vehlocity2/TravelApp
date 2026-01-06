@@ -111,7 +111,7 @@ const handleSubmit = (e)=>{
     if (count === 4) return 'grid grid-cols-2 grid-rows-2 gap-2 rounded-lg overflow-hidden'
     return 'flex flex-wrap gap-2 rounded-lg overflow-hidden'
   }
- const posterImage = post?.createdBy. image? `${import.meta.env.VITE_API_URL}/${post.createdBy.image.replace(/\\/g, '/')}` : image
+ const posterImage = post?.createdBy?.image ? post.createdBy.image : image
   return (
     <div className="relative w-full">
       {/* Post Content */}
@@ -152,7 +152,7 @@ const handleSubmit = (e)=>{
             {post.images.map((i, index) => (
               <img
                 key={index}
-                src={`${import.meta.env.VITE_API_URL}/${i.replace(/\\/g, '/')}`}
+                src={i}
                 className={`w-full h-full object-cover rounded-md cursor-pointer ${
                   post.images.length === 3
                     ? index === 0
@@ -172,7 +172,7 @@ const handleSubmit = (e)=>{
             onClick={() => setShowModal(false)}
           >
             <img
-              src={`${import.meta.env.VITE_API_URL}/${selectedImage.replace(/\\/g, '/')}`}
+              src={selectedImage}
               className="max-w-[90%] max-h-[90%] rounded-lg"
               onClick={(e) => e.stopPropagation()}
             />
@@ -236,7 +236,7 @@ const handleSubmit = (e)=>{
               {comments.length > 0 ? comments.map((c, idx) => (
                 <div className="flex items-start gap-3 w-full border-b border-gray-100 py-3 " key={idx} >
                   <div className="flex-shrink-0 cursor-pointer" onClick={()=> navigate(`/profile/${c.createdBy._id}`)}>
-                    <img src={c.createdBy?.image ? `${import.meta.env.VITE_API_URL}/${c.createdBy?.image.replace(/\\/g, '/')}` : image1} alt="" className='rounded-full object-cover w-8 h-8' onClick={()=> navigate('/profile')}/>
+                    <img src={c.createdBy?.image ? c.createdBy?.image : image1} alt="" className='rounded-full object-cover w-8 h-8' onClick={()=> navigate('/profile')}/>
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-center">

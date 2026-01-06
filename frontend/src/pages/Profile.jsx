@@ -1,10 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react'
 import UserDashBoard from '../components/UserProfile'
-import ProfileNav from '../components/Profilenav'
+// import ProfileNav from '../components/Profilenav'
 import { AuthContext } from '../ContextApi/AuthContextapi'
 import { Outlet, useLocation, useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { FaPlaneDeparture } from 'react-icons/fa'
+import ProfileNav from '../components/ProfileNav'
 
 const Profile = () => {
   const { userId } = useParams()

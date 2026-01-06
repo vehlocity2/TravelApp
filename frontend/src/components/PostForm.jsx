@@ -41,7 +41,7 @@ const PostForm = forwardRef((props, ref) => {
             toast.error('Post failed')
         }
     }
-    const userImage = user.image ? `${import.meta.env.VITE_API_URL}/${user?.image.replace(/\\/g, '/')}` : image
+    const userImage = user.image ? user.image : image
 
     if(pLoading){
         return (

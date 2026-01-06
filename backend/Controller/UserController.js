@@ -39,7 +39,10 @@ const updateUser = async(req, res)=>{
     const { id } = req.params
     try {
         const { bio, name, password } = req.body
-        const imagePath = req.file ? req.file.path : null;
+        const imagePath =  null;
+        if (req.files && req.files.length > 0) {
+            imagePath = await uploadToCloudinary(req.files[0].buffer);
+        }
         const user = await User.findByIdAndUpdate(id, {bio, name}, {new: true})
         if(!user){
             return res.status(400).json({message: "user not found"})
