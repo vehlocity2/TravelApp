@@ -35,7 +35,7 @@ const UserProfile = ({user, loggedUser, onFollowUpdate}) => {
   
 
   const coverImage = image
-  const profileImage = user?.image? user?.image : image1;
+  const profileImage = user?.image ? user?.image : image1;
 
   const handleLogout = ()=>{
     logOut()
