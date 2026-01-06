@@ -40,8 +40,8 @@ const updateUser = async(req, res)=>{
     try {
         const { bio, name, password } = req.body
         const imagePath =  null;
-        if (req.files && req.files.length > 0) {
-            imagePath = await uploadToCloudinary(req.files[0].buffer);
+        if (req.files ) {
+            imagePath = await uploadToCloudinary(req.files.buffer);
         }
         const user = await User.findByIdAndUpdate(id, {bio, name}, {new: true})
         if(!user){

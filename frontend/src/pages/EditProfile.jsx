@@ -34,7 +34,7 @@ const EditProfile = () => {
     if(bio.trim() !== "")formData.append('bio', bio)
     if(gender.trim() !== "")formData.append('gender', gender)
     if(age.trim() !== "") formData.append('age', age)
-    if(image && image.trim() !== ""){
+    if(image){
       formData.append('image', image)
     }
     setLoading(true)
