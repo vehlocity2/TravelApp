@@ -50,7 +50,7 @@ const EditProfile = () => {
       toast.success('Profile updated')
       navigate(-1)
     } catch (error) {
-      console.error("error in updating profile", error.data.response)
+      console.error("error in updating profile", error.message)
       toast.error('Error in updating profile')
     }
   }

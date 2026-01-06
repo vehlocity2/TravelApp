@@ -1,6 +1,7 @@
 const Auth = require("../Models/AuthModel")
 const User = require("../Models/UserModel")
 const bcrypt = require('bcrypt')
+const { uploadToCloudinary } = require("./config/Cloudinary")
 
 const getAllUser = async(req, res)=>{
     try {
