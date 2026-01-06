@@ -2,6 +2,7 @@ const citiesCode = require("../dictionary/citiesCode")
 const Trips = require("../Models/TripsModel")
 const { getHotelByCity, getHotelDetails } = require('../service/amadeusService')
 const mongoose = require('mongoose')
+const { uploadToCloudinary } = require("./config/Cloudinary")
 
 const getHotel = async(req, res)=>{
     const { city} = req.params
@@ -136,7 +137,10 @@ const getHotelDetail = async(req,res)=>{
 
 const createAdminTrip = async (req, res) => {
     let { title, description,  overview, itinerary, whatIncluded, numberOfGuests, location, basePrice, duration, startDate } = req.body;
-    const imagePath = req.files ? req.files.map(file => file.path) : [];
+    const imagePath =  [];
+    for( const file of req.files){
+        imagePath.push( await uploadToCloudinary(file.buffer))
+    }
 
     try {
         if (typeof overview === "string") overview = JSON.parse(overview);
@@ -353,8 +357,12 @@ const getUserTrips = async(req, res)=>{
 
 const updateTrip = async (req, res)=>{
     const { id } = req.params
+    const imagePath = [];
+    for ( const file of req.files){
+        imagePath.push( await uploadToCloudinary(file.buffer))
+    }
     try {
-        const trip = await Trips.findByIdAndUpdate(id, req.body, { new: true})
+        const trip = await Trips.findByIdAndUpdate(id, { ...req.body, images: imagePath.length > 0 ? imagePath : trip.images }, { new: true})
         if(!trip){
             return res.status(404).json({message: "trip not found"})
         }

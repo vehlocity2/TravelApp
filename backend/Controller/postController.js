@@ -1,4 +1,5 @@
 const Post = require("../Models/PostModel")
+const { uploadToCloudinary } = require("./config/Cloudinary")
 
 const createPost = async(req, res)=>{
     const {  content } = req.body
@@ -6,7 +7,10 @@ const createPost = async(req, res)=>{
         if( !content ){
             return res.status(404).json({ message: "Contents is required"})
         }
-        const imagePath = req.files? req.files.map(file => file.path) : []
+        const imagePath = []
+        for (const file of req.files){
+            imagePath.push(await uploadToCloudinary(file.buffer))
+        }
         const userId = req.user.userId
         const post = new Post({
             content,
@@ -82,7 +86,10 @@ const getPostByUser = async(req,res)=>{
 const updatePost = async( req, res)=>{
     const { postId } = req.params
     const { title, content } = req.body
-    const imagePath = req.files? req.files.map(file => file.path) : []
+    const imagePath =  []
+    for ( const file of req.files){
+        imagePath.push( await uploadToCloudinary(file.buffer))
+    }
     try {
         const post = await Post.findById(postId)
         if(!post){
@@ -94,7 +101,7 @@ const updatePost = async( req, res)=>{
         const updatedPost = await Post.findByIdAndUpdate(postId, { 
             title: title || post.title, 
             content: content || post.content, 
-            image: imagePath.length > 0 ? imagePath : post.image }, 
+            images: imagePath.length > 0 ? imagePath : post.images }, 
             { new: true}
         )
         res.status(200).json({ message: "Post updated successfully", post: updatedPost })
