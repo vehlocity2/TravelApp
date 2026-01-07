@@ -40,18 +40,18 @@ const updateUser = async(req, res)=>{
     const { id } = req.params
     try {
         const { bio, name, password } = req.body
-        let imagePath =  null;
+        const updatedUser = {}
+        if(bio) updatedUser.bio = bio
+        if(name) updatedUser.name = name
         if (req.file ) {
-            imagePath = await uploadToCloudinary(req.file.buffer);
+           const imagePath = await uploadToCloudinary(req.file.buffer);
+            updatedUser.image = imagePath
         }
-        const user = await User.findByIdAndUpdate(id, {bio, name}, {new: true})
+        const user = await User.findByIdAndUpdate(id, updatedUser, {new: true})
         if(!user){
             return res.status(400).json({message: "user not found"})
         }
-        if (imagePath) {
-            user.image = imagePath
-            await user.save()
-        }
+        
         if(password){
             const newPassword = await bcrypt.hash(password, 10)
             const updatePassword = await Auth.findOneAndUpdate({userId: id}, {password: newPassword}, {new: true})

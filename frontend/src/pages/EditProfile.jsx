@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { FaPlaneDeparture } from 'react-icons/fa'
 
 const EditProfile = () => {
-  const { user, token } = useContext(AuthContext)
+  const { user, token, setUser } = useContext(AuthContext)
   const [image, setImage] = useState(null)
   const [name, setName] = useState("")
   const [age, setAge] = useState('') 
@@ -39,7 +39,7 @@ const EditProfile = () => {
     }
     setLoading(true)
     try {
-      await axios.patch(`${import.meta.env.VITE_API_URL}/api/v2/users/user/${user._id}`, formData,{
+      const res = await axios.patch(`${import.meta.env.VITE_API_URL}/api/v2/users/user/${user._id}`, formData,{
         headers:{
           "Content-Type": 'multipart/form-data',
           Authorization: `Bearer ${token}`
@@ -48,6 +48,8 @@ const EditProfile = () => {
       setLoading(false)
       console.log('success in updating profile')
       toast.success('Profile updated')
+      console.log("this is the data updated ",res.data)
+      setUser(res.data.user)
       navigate(-1)
     } catch (error) {
       console.error("error in updating profile", error.message)
