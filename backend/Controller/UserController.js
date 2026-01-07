@@ -40,7 +40,7 @@ const updateUser = async(req, res)=>{
     const { id } = req.params
     try {
         const { bio, name, password } = req.body
-        const imagePath =  null;
+        let imagePath =  null;
         if (req.file ) {
             imagePath = await uploadToCloudinary(req.file.buffer);
         }
