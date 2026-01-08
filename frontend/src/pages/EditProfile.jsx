@@ -93,7 +93,7 @@ const EditProfile = () => {
             <div className="flex justify-around items-center gap-3">
               <label className="block">
                   Age
-                  <input type="Number" value={age} placeholder="Enter your Age" onChange={(e) => setAge(e.target.value)} className="border-b-2 p-2 w-20 mt-1 outline-none rounded"/>
+                  <input type="Date" value={age} placeholder="Enter your Age" onChange={(e) => setAge(e.target.value)} className="border-b-2 p-2 w-20 mt-1 outline-none rounded"/>
               </label>
               <label >
                   <select value={gender} className="border-b-2 p-2 w-32 mt-1 outline-none bg-transparent" onChange={(e) => setGender(e.target.value)}>

@@ -57,6 +57,7 @@ tripsSchema.methods.getBookingEndDate = function(){
     const start = this.getTripStartDate()
     const end = new Date(start)
     end.setDate(start.getDate() -2)
+    return end
 }
 tripsSchema.methods.updateStatus = function(){
     const now = new Date()
@@ -76,6 +77,11 @@ tripsSchema.methods.updateStatus = function(){
         this.status = 'active'
     }else if(now > tripEnd){
         this.status = 'closed'
+        const nextStart = new Date(this.startDate)
+        nextStart.setMonth(nextStart.getMonth() + 1)
+        this.startDate = nextStart
+        this.currentBooking = 0 
+        this.status = "upcoming"
     }
 }
 
