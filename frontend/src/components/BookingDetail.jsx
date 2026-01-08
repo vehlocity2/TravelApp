@@ -165,14 +165,14 @@ const BookingDetail = ({formData, setFormData, next, trip}) => {
                     </div>
                 </div>
                 )}
-                 {hotelDetailsLoading && (
+                 {loading ? (
                     <div className="flex justify-center items-center mt-6 bg-white">
                         <p className="text-lg font-semibold animate-pulse text-gray-600">
                             <FaPlaneDeparture className='text-blue-500 w-20 h-13' />
                         </p>
                     </div>
-                )}
-                {selectedHotel && (
+                ) :
+                (selectedHotel && (
                 <div className="mt-4 mx-4 md:mx-10 p-4 border-2 border-blue-300 rounded-xl bg-blue-50">
                     <div className="flex justify-between items-start">
                         <div>
@@ -203,8 +203,9 @@ const BookingDetail = ({formData, setFormData, next, trip}) => {
                         </button>
                     </div>
                 </div>
-            )}
-            <button className='px-6 py-2 border mt-4 border-blue-300 rounded-xl font-semibold mx-10 hover:bg-blue-400 hover:text-white duration-300 transition-all cursor-pointer text-blue-500' onClick={() => { getHotel(); setShowHotels(true); }}>{selectedHotel ? 'Change Hotel' : 'Select Hotel'}</button>
+                ))}
+                <button className='px-6 py-2 border mt-4 border-blue-300 rounded-xl font-semibold mx-10 hover:bg-blue-400 hover:text-white duration-300 transition-all cursor-pointer text-blue-500' onClick={() => { getHotel(); setShowHotels(true); }}>{selectedHotel ? 'Change Hotel' : 'Select Hotel'}</button>
+        
 
            
             {hotelDetails && (<div className="mt-6 px-4 md:px-10 mb-4">
@@ -238,6 +239,7 @@ const BookingDetail = ({formData, setFormData, next, trip}) => {
                     </div>
                 </div>
             </div>)}
+
             <button className='px-6 py-2 border mt-4 border-blue-300 rounded-xl font-semibold mx-auto ml-6 md:ml-10 hover:bg-blue-400 hover:text-white duration-300 transition-all cursor-pointer text-blue-500' onClick={ handleNext}>Continue</button>
         </div>
     </div>
