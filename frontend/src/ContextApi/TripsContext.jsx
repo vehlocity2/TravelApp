@@ -21,7 +21,7 @@ const TripsProvider = ({children}) => {
                 })
                 const sortTrip = res.data.trips.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt))
                 setTrips(sortTrip)
-                // console.log('this are the trips', res.data.trips)
+                console.log('this are the trips', res.data.trips)
             } catch (err) {
                 console.error('error in fetching trips', err.message)
             } finally {

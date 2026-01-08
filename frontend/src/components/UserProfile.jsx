@@ -161,7 +161,7 @@ const UserProfile = ({user, loggedUser, onFollowUpdate}) => {
           </div>
           <div className="flex justify-between items-center gap-1 ">
             <BiSolidBalloon />
-            <p className="text-sm text-gray-600">Born November {user?.age} 1997</p>
+            {isOwner && <p className="text-sm text-gray-600">Born November {user?.age} 1997</p>}
           </div>
         </div>
         <div className="flex justify-start items-center gap-3 mt-3">
