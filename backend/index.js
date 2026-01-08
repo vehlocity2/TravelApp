@@ -11,7 +11,7 @@ const port = process.env.PORT
 app.use(express.json());
 app.use(
   cors({
-    origin: "*", // Replace with your frontend URL
+    origin: "https://travelapp-qohq.onrender.com", // Replace with your frontend URL
     credentials: true, // Allow credentials (cookies, authorization headers, etc.)
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
     allowedHeaders: ["Content-Type", "Authorization"],

@@ -57,7 +57,7 @@ const createTransaction = async(req, res)=>{
             tripId,
             userId,
             currency: "NGN",
-            redirect_url: `http://localhost:5173/book-tour/${tripId}/done`,
+            redirect_url: `https://travelapp-qohq.onrender.com/book-tour/${tripId}/done`,
             customer: {email, name, phonenumber: phone},
             customizations: {
                 title: "Travel Tour",
