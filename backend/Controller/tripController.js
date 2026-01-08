@@ -336,6 +336,10 @@ const getTripInfo = async (req, res) => {
   try {
     const trip = await Trips.findById(id).populate({path: 'review', select: 'rating comment createdAt', populate:{path: 'user', select: 'name'}});
     if (!trip) return res.status(404).json({ message: "Trip not found" });
+
+    trip.updateStatus();
+    await trip.save();
+
     res.status(200).json({
       message: "Trip fetched successfully",
       trip
@@ -353,6 +357,10 @@ const getUserTrips = async(req, res)=>{
         const trips = await Trips.find({createdBy: userId})
         if(!trips){
             return res.status(404).json({msg: "Trips not found or user need to create trips"})
+        }
+        for (let trip of trips) {
+            trip.updateStatus()
+            await trip.save()
         }
         res.status(200).json({msg: "trips fetched successfully", trips, count: trips.length})
     } catch (error) {
