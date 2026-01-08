@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { IoLocationOutline } from "react-icons/io5";
 import { CiCalendarDate } from "react-icons/ci";
 import { BsPeople } from "react-icons/bs";
@@ -20,6 +20,7 @@ const TripComponent = ({trips}) => {
     const [openMenu, setOpenMenu ] = useState(false)
     const location = useLocation()
     const admin = user.auths[0].isAdmin
+    const navigate = useNavigate()
 
     const handleLike = ()=>{
         const token = localStorage.getItem('token')
@@ -46,7 +47,7 @@ const TripComponent = ({trips}) => {
                         isOpen={openMenu}
                         onClose={() => setOpenMenu(false)}
                         options={[
-                        { label: "Edit Post", onClick: () => console.log("edit") },
+                        { label: "Edit Post", onClick: () => navigate(`/edit-trips/${trips._id}`, { state: { from: location.pathname } }) },
                         { label: "Delete Post", onClick: () => console.log("delete") },
                         ]}
                     />

@@ -22,7 +22,7 @@ const PostContextProvider= ({children}) => {
                 const sortPost = res.data.posts.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt))
                 setPost(sortPost)
                 setLoading(false)
-                console.log('this is all the post n the data base', res.data.posts)
+                // console.log('this is all the post n the data base', res.data.posts)
             }).catch((err)=>{
                 setLoading(false)
                 console.error('Error in fetching posts', err.response.data.message)
@@ -42,15 +42,24 @@ const PostContextProvider= ({children}) => {
             })
              setPost(prev => [res.data.post, ...prev]);
             setPLoading(false)
-            console.log('Post created successfully', res.data)
+            // console.log('Post created successfully', res.data)
         } catch (error) {
             setPLoading(false)
             console.error('Error in creating post', error.message)
         }
     }
 
+    const updatePostsAfterUserChange = (updatedUser) => {
+    setPost(prevPosts => prevPosts.map(p => 
+        p.createdBy._id === updatedUser._id
+        ? { ...p, createdBy: updatedUser }
+        : p
+    ));
+    };
+
+
   return (
-    <PostContext.Provider value={{loading, post, createPost, pLoading}}>
+    <PostContext.Provider value={{loading, post, createPost, pLoading, updatePostsAfterUserChange, setPost}}>
         {children}
     </PostContext.Provider>
   )

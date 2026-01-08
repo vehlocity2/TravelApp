@@ -16,7 +16,7 @@ const PostComponent = ({ post }) => {
   const { user, token } = useContext(AuthContext)
   if(!user) return null 
   const userId = user?._id || user?.id
-  console.log('this is post ', post)
+  // console.log('this is post ', post)
 
   const [showModal, setShowModal] = useState(false)
   const [selectedImage, setSelectedImage] = useState(null)
@@ -63,7 +63,7 @@ const PostComponent = ({ post }) => {
       setComments(newComments)
       setCommentsCount(res.data.count)
       setShowComments(true)
-      console.log('comments', res.data.comments)
+      // console.log('comments', res.data.comments)
     }).catch((err) => {
       console.error('Error fetching comments', err.message)
     })
@@ -96,7 +96,7 @@ const handleSubmit = (e)=>{
       setContent('')
       setLoading(false)
       toast.success('Posted')
-      console.log('my comment', res.data)
+      // console.log('my comment', res.data)
   }).catch((err)=>{
     console.error('Error in creating comment', err.response?.data?.message)
     toast.error(err.response?.data?.message)
@@ -135,7 +135,7 @@ const handleSubmit = (e)=>{
                   isOpen={openMenu}
                   onClose={() => setOpenMenu(false)}
                   options={[
-                    ...(post.createdBy._id === userId ? [{ label: "Edit Post", onClick: () => console.log("edit") },
+                    ...(post.createdBy._id === userId ? [{ label: "Edit Post", onClick: () => navigate(`edit-post/${post._id}`)},
                     { label: "Delete Post", onClick: () => console.log("delete") }] : []),
                     { label: "Share", onClick: () => console.log("share") },
                   ]}
@@ -168,12 +168,12 @@ const handleSubmit = (e)=>{
 
         {showModal && selectedImage && (
           <div
-            className="fixed inset-0 bg-black/70 z-50 flex justify-center items-center"
+            className="fixed inset-0 bg-black/95 z-50 flex justify-center items-center"
             onClick={() => setShowModal(false)}
           >
             <img
               src={selectedImage}
-              className="max-w-[90%] max-h-[90%] rounded-lg"
+              className="max-w-[95%] max-h-[95%] rounded-lg"
               onClick={(e) => e.stopPropagation()}
             />
           </div>

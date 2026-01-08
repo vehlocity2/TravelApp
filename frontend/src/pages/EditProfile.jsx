@@ -6,9 +6,11 @@ import { AuthContext } from '../ContextApi/AuthContextapi'
 import toast from 'react-hot-toast'
 import { useNavigate } from 'react-router-dom'
 import { FaPlaneDeparture } from 'react-icons/fa'
+import { PostContext } from '../ContextApi/PostContext'
 
 const EditProfile = () => {
   const { user, token, setUser } = useContext(AuthContext)
+  const { updatePostsAfterUserChange } = useContext(PostContext)
   const [image, setImage] = useState(null)
   const [name, setName] = useState("")
   const [age, setAge] = useState('') 
@@ -50,6 +52,7 @@ const EditProfile = () => {
       toast.success('Profile updated')
       console.log("this is the data updated ",res.data)
       setUser(res.data.user)
+      updatePostsAfterUserChange(res.data.user)
       navigate(-1)
     } catch (error) {
       console.error("error in updating profile", error.message)

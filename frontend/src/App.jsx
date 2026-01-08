@@ -25,6 +25,8 @@ import CreateTrip from './pages/CreateTrip'
 import CreatePost from './pages/CreatePost'
 import EditProfile from './pages/EditProfile'
 import BookingDone from './components/BookingDone'
+import EditPost from './pages/EditPost'
+import EditTrips from './pages/EditTrips'
 
 // ✅ This component runs AFTER AuthContextProvider is mounted
 const AppContent = () => {
@@ -55,11 +57,13 @@ const AppContent = () => {
         >
           <Route index element={<Home />} />
           <Route path="search" element={<Search />} />
-          <Route path="trips" element={<Trips />}>
+          <Route path='edit-post/:postId' element={ <EditPost />} />
+          <Route path='edit-trips/:tripId' element={ <EditTrips /> } />
+          <Route path="trips" element={<Trips />} >
             <Route index element={<UpcomingTrips />} />
             {/* <Route path="upcoming-trips" element={<UpcomingTrips />} /> */}
             {/* <Route path="past-trips" element={<PastTrips />} /> */}
-            <Route path='create-trips' element={<CreateTrip />}/>
+            <Route path='create-trips' element={<CreateTrip />} />
             <Route path="tour-details/:tripId" element={<TourDetails />} />
           </Route>
           <Route path='create-post' element={<CreatePost />} />

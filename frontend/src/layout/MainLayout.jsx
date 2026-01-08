@@ -12,7 +12,7 @@ const MainLayout = () => {
       <div className="block md:block md:w-[5rem] lg:w-[15rem] w-full fixed bg-white top-0 left-0 md:h-full z-50 transition-all duration-300 shadow-md">
         {!HideNav && <Navbar /> }
       </div>
-      <div className="flex-1 md:ml-[4rem] lg:ml-[14rem] pb-5 md:mr-[5rem] lg:mr-[14rem] flex ">
+      <div className="flex-1 md:ml-[4rem] lg:ml-[14rem] pb-16 md:mr-[5rem] lg:mr-[14rem] flex ">
         <div className="flex-1 p-3 px-4 pt-7 md:pt-0   border-r  bg-white border-gray-200">
           <Outlet /> 
         </div>

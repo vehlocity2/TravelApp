@@ -19,7 +19,8 @@ const Navbar = () => {
 
     const hideLogo = [ '/create-post', '/trips']
     const showLogo = !hideLogo.includes(location.pathname)
-    const hideNav = location.pathname.includes('/create-trips') || location.pathname.startsWith('/profile') || location.pathname.includes('/book-tour')
+    const hideNav = location.pathname.includes('/create-trips') || location.pathname.startsWith('/profile') || location.pathname.includes('/book-tour') || location.pathname.startsWith('/edit-post/') || location.pathname.startsWith('/edit-trips/')
+
 
   return (
     <nav className=' md:px-6 pt-4  font-poppins'>

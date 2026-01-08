@@ -60,7 +60,7 @@ const AuthContextProvider = ({ children}) => {
         headers: { Authorization: `Bearer ${token}` }
       })
       setUser(res.data.user)
-      console.log('Logged-in user refreshed')
+      // console.log('Logged-in user refreshed')
     } catch (err) {
       console.error('Error refreshing user:', err)
     }
@@ -75,7 +75,7 @@ const AuthContextProvider = ({ children}) => {
           Authorization: `Bearer ${StoredToken}`
         }
       }).then((res)=>{
-        console.log('Fetched user:', res.data);
+        // console.log('Fetched user:', res.data);
         setUser(res.data.user)
       }).catch((error)=>{
         console.log('Error fetching user data:', error)
@@ -90,7 +90,7 @@ const AuthContextProvider = ({ children}) => {
     }
   }, [])
 
-  console.log('this is users:', user)
+  // console.log('this is users:', user)
 
   const logOut = () =>{
     localStorage.removeItem('token')

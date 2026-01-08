@@ -21,7 +21,7 @@ const TripsProvider = ({children}) => {
                 })
                 const sortTrip = res.data.trips.sort((a,b)=> new Date(b.createdAt) - new Date(a.createdAt))
                 setTrips(sortTrip)
-                console.log('this are the trips', res.data.trips)
+                // console.log('this are the trips', res.data.trips)
             } catch (err) {
                 console.error('error in fetching trips', err.message)
             } finally {
@@ -42,7 +42,7 @@ const TripsProvider = ({children}) => {
             })
             
             setTLoading(false)
-            console.log(res.data)
+            // console.log(res.data)
             return res.data
         } catch (error) {
             console.error('error in creating post ', error.res.data)
@@ -51,7 +51,7 @@ const TripsProvider = ({children}) => {
     }
 
     return (
-        <TripContext.Provider value={{trips, loading, tLoading, createTrip }}>
+        <TripContext.Provider value={{trips, loading, tLoading, createTrip, setTrips }}>
             {children}
         </TripContext.Provider>
     )

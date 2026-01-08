@@ -357,12 +357,27 @@ const getUserTrips = async(req, res)=>{
 
 const updateTrip = async (req, res)=>{
     const { id } = req.params
-    const imagePath = [];
-    for ( const file of req.files){
-        imagePath.push( await uploadToCloudinary(file.buffer))
-    }
     try {
-        const trip = await Trips.findByIdAndUpdate(id, { ...req.body, images: imagePath.length > 0 ? imagePath : trip.images }, { new: true})
+        const existingTrip = await Trips.findById(id)
+        
+        if(!existingTrip){
+            return res.status(404).json({message: "Trip not found"})
+        }
+        let imagePath = existingTrip.images
+        if(req.files && req.files.length > 0){
+            imagePath = [];
+            for ( const file of req.files){
+                imagePath.push( await uploadToCloudinary(file.buffer))
+            }
+        }
+
+        let overview = req.body.overview
+        let itinerary = req.body.itinerary
+        let whatIncluded = req.body.whatIncluded
+        if(typeof overview === "string") overview = JSON.parse(overview);
+        if(typeof itinerary === "string") itinerary = JSON.parse(itinerary);
+        if(typeof whatIncluded === "string") whatIncluded = JSON.parse(whatIncluded);
+        const trip = await Trips.findByIdAndUpdate(id, { ...req.body, overview, itinerary, whatIncluded, images: imagePath }, { new: true})
         if(!trip){
             return res.status(404).json({message: "trip not found"})
         }
