@@ -68,10 +68,12 @@ const BookingDetail = ({formData, setFormData, next, trip}) => {
             }).then((res)=>{
                 setHotelDetails(res.data)
                 setHotelDetailsLoading(false)
+                toast.success("Hotel selected successfully")
                 console.log("selected hotel details:", res.data )
             }).catch((err)=>{
                 console.error("Error in getting hotels details:", err.message)
                 setHotelDetailsLoading(false)
+                toast.error("Error in fetching hotel details")
             }).finally(()=>{
                 setHotelDetailsLoading(false)
             })
