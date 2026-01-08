@@ -71,6 +71,9 @@ const BookingDetail = ({formData, setFormData, next, trip}) => {
                 console.log("selected hotel details:", res.data )
             }).catch((err)=>{
                 console.error("Error in getting hotels details:", err.message)
+                setHotelDetailsLoading(false)
+            }).finally(()=>{
+                setHotelDetailsLoading(false)
             })
         }
         fetchHotelDetails()
