@@ -3,7 +3,7 @@ import { AuthContext } from '../ContextApi/AuthContextapi'
 import { useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
 
-const UserSignUp = () => {
+const SignUp = () => {
   const { user, SignUp, SignIn, loading, error} = useContext(AuthContext)
   const navigate = useNavigate()
   const [login, setLogin] = useState('login')
@@ -132,4 +132,4 @@ const UserSignUp = () => {
   )
 }
 
-export default UserSignUp
+export default SignUp

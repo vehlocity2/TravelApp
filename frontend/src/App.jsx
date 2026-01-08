@@ -14,7 +14,7 @@ import BookTour from './pages/BookTour'
 import TourDetails from './pages/TourDetails'
 import UpcomingTrips from './pages/UpcomingTrips'
 import PastTrips from './pages/PastTrips'
-import UserSignUp from './pages/SignUp.JSX'
+// import UserSignUp from './pages/SignUp.JSX'
 import ProtectedRoutes from './protected/ProtectedRoutes'
 import AuthContextProvider, { AuthContext } from './ContextApi/AuthContextapi'
 import { Toaster } from 'react-hot-toast'
@@ -27,6 +27,7 @@ import EditProfile from './pages/EditProfile'
 import BookingDone from './components/BookingDone'
 import EditPost from './pages/EditPost'
 import EditTrips from './pages/EditTrips'
+import SignUp from './pages/SignUp'
 
 // ✅ This component runs AFTER AuthContextProvider is mounted
 const AppContent = () => {
@@ -45,7 +46,7 @@ const AppContent = () => {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
-        <Route path="sign-up" element={<UserSignUp />} />
+        <Route path="sign-up" element={<SignUp />} />
 
         <Route
           path="/"
