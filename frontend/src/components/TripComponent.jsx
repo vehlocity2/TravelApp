@@ -69,7 +69,7 @@ const TripComponent = ({trips}) => {
                 <div className="flex justify-between">
                     <div className="flex items-center gap-2">
                         <CiCalendarDate className='text-xs'/>
-                        <p className='text-xs'>{trips.createdAt.slice(0, 10)}</p>
+                        <p className='text-xs'>{trips.startDate.slice(0, 10)}</p>
                     </div>
                     <div className="flex items-center gap-1">
                         <BsPeople className='text-xs' />
