@@ -39,15 +39,18 @@ const BookingDetail = ({formData, setFormData, next, trip}) => {
     const getHotel = async ()=>{
         const token = localStorage.getItem('token')
         setLoading(true)
+        try{
         const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/v2/bookings/hotels/${trip._id}`,{
             headers: { Authorization: `Bearer ${token}` }
-        }).then((res)=>{
+        })
             setHotel(res.data.hotels)
             setLoading(false)
-        }).catch((err)=>{
+        }catch(err){
             console.error("Error fetching hotels:", err.message)
             setLoading(false)
-        })
+        } finally {
+            setLoading(false)
+        }
     }
     console.log("Selected hotel:", hotel)
 
@@ -162,6 +165,13 @@ const BookingDetail = ({formData, setFormData, next, trip}) => {
                     </div>
                 </div>
                 )}
+                 {hotelDetailsLoading && (
+                    <div className="flex justify-center items-center mt-6 bg-white">
+                        <p className="text-lg font-semibold animate-pulse text-gray-600">
+                            <FaPlaneDeparture className='text-blue-500 w-20 h-13' />
+                        </p>
+                    </div>
+                )}
                 {selectedHotel && (
                 <div className="mt-4 mx-4 md:mx-10 p-4 border-2 border-blue-300 rounded-xl bg-blue-50">
                     <div className="flex justify-between items-start">
@@ -196,13 +206,7 @@ const BookingDetail = ({formData, setFormData, next, trip}) => {
             )}
             <button className='px-6 py-2 border mt-4 border-blue-300 rounded-xl font-semibold mx-10 hover:bg-blue-400 hover:text-white duration-300 transition-all cursor-pointer text-blue-500' onClick={() => { getHotel(); setShowHotels(true); }}>{selectedHotel ? 'Change Hotel' : 'Select Hotel'}</button>
 
-            {hotelDetailsLoading && (
-                <div className="flex justify-center items-center mt-6 bg-white">
-                    <p className="text-lg font-semibold animate-pulse text-gray-600">
-                        <FaPlaneDeparture className='text-blue-500 w-20 h-13' />
-                    </p>
-                </div>
-            )}
+           
             {hotelDetails && (<div className="mt-6 px-4 md:px-10 mb-4">
                 <h2 className='text-xl md:text-2xl font-bold'>Price Breakdown </h2>
                 <div className="flex flex-col items-center justify-between gap-3 mt-2 px-4 py-2 border rounded-md w-[93%] md:w-[57%] lg:w-[47%] border-gray-300">
