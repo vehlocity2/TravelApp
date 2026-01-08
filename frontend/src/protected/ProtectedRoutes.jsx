@@ -1,8 +1,6 @@
 import React, { useContext } from 'react'
 import { AuthContext } from '../ContextApi/AuthContextapi'
 import { Navigate } from 'react-router-dom'
-import MainLayout from '../layout/MainLayout'
-import UserSignUp from '../pages/SignUP.JSX'
 
 const ProtectedRoutes = ({children}) => {
     const { user, loading } = useContext(AuthContext)
