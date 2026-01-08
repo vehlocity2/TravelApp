@@ -170,7 +170,7 @@ const BookingDetail = ({formData, setFormData, next, trip}) => {
                     </div>
                 </div>
                 )}
-                 {loading ? (
+                 {hotelDetailsLoading ? (
                     <div className="flex justify-center items-center mt-6 bg-white">
                         <p className="text-lg font-semibold animate-pulse text-gray-600">
                             <FaPlaneDeparture className='text-blue-500 w-20 h-13' />
