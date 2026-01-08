@@ -252,7 +252,12 @@ const createAdminTrip = async (req, res) => {
 const getAllTrips = async (req, res) => {
     try {
         const trips = await Trips.find().populate('review', 'rating comment user createdAt');
+
         if (!trips.length) return res.status(404).json({ message: "No trips found" });
+        for (let trip of trips) {
+            trip.updateStatus()
+            await trip.save()
+        }
         res.status(200).json({
             message: "Trips fetched successfully",
             count: trips.length,
@@ -359,7 +364,7 @@ const updateTrip = async (req, res)=>{
     const { id } = req.params
     try {
         const existingTrip = await Trips.findById(id)
-        
+
         if(!existingTrip){
             return res.status(404).json({message: "Trip not found"})
         }
