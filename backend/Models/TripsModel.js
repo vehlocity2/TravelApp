@@ -59,30 +59,31 @@ tripsSchema.methods.getBookingEndDate = function(){
     end.setDate(start.getDate() -2)
     return end
 }
-tripsSchema.methods.updateStatus = function(){
-    const now = new Date()
-    const bookingStart = this.getBookingStartDate()
-    const bookEnd = this.getBookingEndDate()
-    const tripStart = this.getTripStartDate()
-    const tripEnd = this.getTripEndDate()
-    if(now < bookingStart){
-        this.status = 'upcoming'
-    }else if(now >= bookingStart && now <= bookEnd){
-        if(this.currentBooking >= this.numberOfGuests){
-            this.status = 'fully-booked'
-        }else{
-            this.status = 'open'
-        }
-    }else if(now >= tripStart && now<= tripEnd){
-        this.status = 'active'
-    }else if(now > tripEnd){
-        this.status = 'closed'
-        const nextStart = new Date(this.startDate)
-        nextStart.setMonth(nextStart.getMonth() + 1)
-        this.startDate = nextStart
-        this.currentBooking = 0 
-        this.status = "upcoming"
-    }
+tripsSchema.methods.updateStatus = function () {
+  const now = new Date()
+  const tripStart = this.getTripStartDate()
+  const tripEnd = this.getTripEndDate()
+
+  const bookingStart = new Date(tripStart)
+  bookingStart.setMonth(bookingStart.getMonth() - 1)
+
+  const bookingEnd = new Date(tripStart)
+  bookingEnd.setDate(tripStart.getDate() - 2)
+
+  if (now < bookingStart) {
+    this.status = 'upcoming'
+  }
+  else if (now >= bookingStart && now <= bookingEnd) {
+    this.status = this.currentBooking >= this.numberOfGuests
+      ? 'fully-booked'
+      : 'open'
+  }
+  else if (now >= tripStart && now <= tripEnd) {
+    this.status = 'active'
+  }
+  else {
+    this.status = 'closed'
+  }
 }
 
 const Trips = mongoose.model('Trips', tripsSchema)
