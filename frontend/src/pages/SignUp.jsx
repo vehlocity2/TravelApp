@@ -27,7 +27,7 @@ const SignUp = () => {
     if(result){
       console.log('User signed up successfully')
       navigate('/login') 
-        toast.success('Login successful!')
+        toast.success('Sign up successful!')
     }else{
       if (error) toast.error(error)
     }
