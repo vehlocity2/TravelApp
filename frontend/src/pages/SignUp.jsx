@@ -27,7 +27,7 @@ const SignUp = () => {
       const result = await SignUp(formData)
       if(result){
         console.log('User signed up successfully')
-        navigate('/') 
+        navigate('/login') 
          toast.success('Login successful!')
       }else{
         if (error) toast.error(error)
