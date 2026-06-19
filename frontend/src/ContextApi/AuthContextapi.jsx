@@ -17,7 +17,6 @@ const AuthContextProvider = ({ children}) => {
     try {
       setLoading(true)
       const res = await axios.post(`${API_URL}/api/v2/auth/signup`, formData)
-      setUser(res.data)
       setError(null)
       return res.data
     } catch (error) {
