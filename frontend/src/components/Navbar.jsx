@@ -85,7 +85,7 @@ const Navbar = () => {
                     </Link>
                 </div>
             </div>)}
-            { !isInput && (<ul className='flex gap-5 sm:gap-10 bg-white py-3  justify-center items-center bottom-0 fixed right-0 left-0'>
+            { !isInput && (<ul className='flex gap-7 sm:gap-10 bg-white py-3  justify-center items-center bottom-0 fixed right-0 left-0'>
                 <NavLink to='/' className={({isActive})=>`flex flex-col items-center gap-1 text-lg  ${isActive? 'text-blue-600' : 'text-gray-600'}`}>
                     <IoHome />
                     <p>Post</p>
