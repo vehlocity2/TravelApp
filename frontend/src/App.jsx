@@ -25,6 +25,7 @@ import BookingDone from './components/BookingDone'
 import EditPost from './pages/EditPost'
 import EditTrips from './pages/EditTrips'
 import SignUp from './pages/SignUp'
+import Login from './pages/Login'
 
 // ✅ This component runs AFTER AuthContextProvider is mounted
 const AppContent = () => {
@@ -44,6 +45,7 @@ const AppContent = () => {
     createRoutesFromElements(
       <>
         <Route path="sign-up" element={<SignUp />} />
+        <Route path="login" element={<Login />} />
 
         <Route
           path="/"
